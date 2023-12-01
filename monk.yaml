@@ -1,0 +1,28 @@
+namespace: beginner-html-site
+
+static-website:
+  defines: runnable
+  metadata:
+    name: static-website
+    description: A simple one-page static website for educational purposes
+    icon: https://emojiapi.dev/api/v1/robot.svg
+  containers:
+    static-website:
+      image: env-3257.registry.local/static-website:main-8158340
+      build: .
+      dockerfile: Dockerfile.static-website
+  services:
+    http:
+      description: Standard HTTP port
+      container: static-website
+      port: 80
+      host-port: 80
+      publish: true
+      protocol: tcp
+  connections: {}
+  variables: {}
+
+stack:
+  defines: group
+  members:
+    - beginner-html-site/static-website
